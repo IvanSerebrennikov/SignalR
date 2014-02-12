@@ -43,7 +43,8 @@ namespace Microsoft.AspNet.SignalR.Client.Transports
         {
             get
             {
-                return true;
+                return NegotiationResponse != null &&
+                       NegotiationResponse.LongPollDelay.HasValue;
             }
         }
 
