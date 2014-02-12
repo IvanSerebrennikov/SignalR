@@ -30,7 +30,9 @@
         name: "longPolling",
 
         supportsKeepAlive: function (connection) {
-            return browserSupportsXHRProgress && connection.ajaxDataType !== "jsonp";
+            return browserSupportsXHRProgress &&
+                   connection.ajaxDataType !== "jsonp" &&
+                   connection._.longPollDelay === 0;
         },
 
         reconnectDelay: 3000,
@@ -233,7 +235,9 @@
         },
 
         lostConnection: function (connection) {
-            connection.pollXhr.abort("lostConnection");
+            if (connection.pollXhr) {
+                connection.pollXhr.abort("lostConnection");
+            }
         },
 
         send: function (connection, data) {
