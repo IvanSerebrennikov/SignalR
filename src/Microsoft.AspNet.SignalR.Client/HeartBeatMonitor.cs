@@ -55,6 +55,7 @@ namespace Microsoft.AspNet.SignalR.Client
         /// </summary>
         public void Start()
         {
+            _connection.LastActiveAt = DateTime.UtcNow;
             _connection.MarkLastMessage();
             _connection.MarkActive();
             _monitorKeepAlive = _connection.KeepAliveData != null && _connection.Transport.SupportsKeepAlive;
