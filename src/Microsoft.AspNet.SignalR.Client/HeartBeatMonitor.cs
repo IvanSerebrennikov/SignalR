@@ -51,13 +51,10 @@ namespace Microsoft.AspNet.SignalR.Client
         }
 
         /// <summary>
-        /// Updates LastKeepAlive and starts the timer
+        /// Starts the timer and updates LastAliveAt  
         /// </summary>
         public void Start()
         {
-            _connection.LastActiveAt = DateTime.UtcNow;
-            _connection.MarkLastMessage();
-            _connection.MarkActive();
             _monitorKeepAlive = _connection.KeepAliveData != null && _connection.Transport.SupportsKeepAlive;
 
             HasBeenWarned = false;

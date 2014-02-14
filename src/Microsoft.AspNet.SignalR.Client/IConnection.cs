@@ -34,7 +34,7 @@ namespace Microsoft.AspNet.SignalR.Client
         ConnectionState State { get; }
         IClientTransport Transport { get; }
         DateTime LastMessageAt { get; }
-        DateTime LastActiveAt { get; set; }
+        DateTime LastActiveAt { get; }
 
 #if !PORTABLE
         /// <summary>

@@ -253,10 +253,6 @@ namespace Microsoft.AspNet.SignalR.Client
             {
                 return _lastActiveAt;
             }
-            set
-            {
-                _lastActiveAt = value;
-            }
         }
 
 #if NET4 || NET45
@@ -504,6 +500,8 @@ namespace Microsoft.AspNet.SignalR.Client
                                  _startTcs.SetResult(null);
 
                                  // Start the monitor to check for server activity
+                                 _lastMessageAt = DateTime.UtcNow;
+                                 _lastActiveAt = DateTime.UtcNow;
                                  _monitor.Start();
                              })
                 // Don't return until the last receive has been processed to ensure messages/state sent in OnConnected
